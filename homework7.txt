@@ -1,0 +1,49 @@
+cript started on 2023-12-06 15:10:23+00:00
+[root@centos8s ~]# ll /root/rpmbuild/RPMS/x86_64/
+total 6244
+-rw-r--r--. 1 root root 3820500 Dec  6 12:42 nginx-1.20.2-1.el8.ngx.x86_64.rpm
+-rw-r--r--. 1 root root 2569000 Dec  6 12:42 nginx-debuginfo-1.20.2-1.el8.ngx.x86_64.rpm
+[root@centos8s ~]# yum history
+Failed to set locale, defaulting to C.UTF-8
+ID     | Command line                                                                  | Date and time    | Action(s)      | Altered
+------------------------------------------------------------------------------------------------------------------------------------
+    12 | install percona-orchestrator.x86_64                                           | 2023-12-06 14:46 | Install        |    3   
+    11 | localinstall -y /root/rpmbuild/RPMS/x86_64/nginx-1.20.2-1.el8.ngx.x86_64.rpm  | 2023-12-06 12:53 | Install        |    1 EE
+    10 | builddep rpmbuild/SPECS/nginx.spec                                            | 2023-12-06 12:19 | I, U           |    7   
+     9 | install -y mc                                                                 | 2023-12-06 11:42 | Install        |    1   
+     8 | install -y redhat-lsb-core wget rpmdevtools rpm-build createrepo yum-utils gc | 2023-12-06 11:38 | I, U           |   56   
+     7 | --assumeyes install haveged patch                                             | 2023-11-01 21:47 | Install        |    1   
+     6 | --quiet --assumeyes install bzip2 elfutils-libelf-devel                       | 2023-11-01 21:44 | Install        |    1   
+     5 | --assumeyes install kernel-tools kernel-devel kernel-headers                  | 2023-11-01 21:42 | Install        |   17   
+     4 | --assumeyes install sudo dmidecode dnf-utils bash-completion man man-pages ml | 2023-11-01 21:36 | Install        |  104   
+     3 | --assumeyes update                                                            | 2023-11-01 21:34 | I, U           |    2 EE
+     2 | --quiet --assumeyes --enablerepo=extras install epel-release                  | 2023-11-01 21:33 | Install        |    1   
+     1 |                                                                               | 2023-11-01 21:15 | Install        |  356 EE
+[root@centos8s ~]# curl -a http://localhost/repo/
+<html>
+<head><title>Index of /repo/</title></head>
+<body>
+<h1>Index of /repo/</h1><hr><pre><a href="../">../</a>
+<a href="repodata/">repodata/</a>                                          06-Dec-2023 13:02                   -
+<a href="nginx-1.20.2-1.el8.ngx.x86_64.rpm">nginx-1.20.2-1.el8.ngx.x86_64.rpm</a>                  06-Dec-2023 12:59             3820500
+<a href="percona-orchestrator-3.2.6-2.el8.x86_64.rpm">percona-orchestrator-3.2.6-2.el8.x86_64.rpm</a>        16-Feb-2022 15:57             5222976
+</pre><hr></body>
+</html>
+[root@centos8s ~]# yum repolist enabled | grep sashant
+Failed to set locale, defaulting to C.UTF-8
+sashant             sashant-repo
+[root@centos8s ~]# yum repo-pkgs sashant list
+Failed to set locale, defaulting to C.UTF-8
+CentOS Stream 8 - AppStream                                                                         1.7 kB/s | 4.4 kB     00:02    
+CentOS Stream 8 - BaseOS                                                                            3.5 kB/s | 3.9 kB     00:01    
+CentOS Stream 8 - Extras                                                                            1.5 kB/s | 2.9 kB     00:01    
+CentOS Stream 8 - Extras common packages                                                            1.8 kB/s | 3.0 kB     00:01    
+Extra Packages for Enterprise Linux 8 - x86_64                                                       15 kB/s |  27 kB     00:01    
+Extra Packages for Enterprise Linux 8 - Next - x86_64                                                14 kB/s |  20 kB     00:01    
+sashant-repo                                                                                        999 kB/s | 3.0 kB     00:00    
+Installed Packages
+percona-orchestrator.x86_64                                          2:3.2.6-2.el8                                          @sashant
+[root@centos8s ~]# exit
+exit
+
+Script done on 2023-12-06 15:17:48+00:00
